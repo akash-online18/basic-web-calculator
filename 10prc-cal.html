@@ -1,0 +1,116 @@
+
+<html>
+  <head>
+    <title>calculator</title>
+    <style>
+      body {
+        background-color: black;
+        justify-items: center;
+        
+      }
+      .calculator {
+        width: 290px;
+        height: 480px;
+        justify-items: center;
+        border-radius: 20px;
+        background-color:black;
+        border: 1px solid white;
+      }
+      .display {
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: xx-large;
+        width: 250px;
+        height: 60px;
+        padding: 10px;
+        border-radius: 20px;
+        border: 2px solid gray;
+        background-color: green;
+      }
+      .nummber-button {
+        width: 50px;
+        height: 50px;
+        border-radius:50px ;
+        font-size:18px;
+        background-color:gray;
+        color: white;
+        border: none;
+      }
+      .arithmetic-button {
+        width: 50px;
+        height: 50px;
+        border-radius:50px ;
+        font-size:18px;
+        background-color: orange;
+        color: white;
+        border: none;
+      }
+    </style>
+  </head> 
+  <body>
+    <div class="calculator">
+
+        <p class="js-cal-values display"></p>
+        
+      <p>
+        <button onclick="updateCalculation ('1')" class="nummber-button">1</button>
+        <button onclick="updateCalculation ('2')"class="nummber-button">2</button>
+        <button onclick="updateCalculation ('3')"class="nummber-button">3</button>
+        <button onclick="updateCalculation ('+')" class="arithmetic-button">+</button>
+      </p>
+      <p>
+        <button onclick="updateCalculation ('4')"class="nummber-button">4</button>
+        <button onclick="updateCalculation ('5')"class="nummber-button">5</button>
+        <button onclick="updateCalculation ('6')"class="nummber-button">6</button>
+        <button onclick="updateCalculation ('-')"class="arithmetic-button">-</button>
+      </p>
+      <p>
+        <button onclick="updateCalculation ('7')"class="nummber-button">7</button>
+        <button onclick="updateCalculation ('8')"class="nummber-button">8</button>
+        <button onclick="updateCalculation ('9')"class="nummber-button">9</button>
+        <button onclick="updateCalculation ('*')" class="arithmetic-button">*</button>
+      </p>
+      <p>
+        <button onclick="updateCalculation ('0')"class="nummber-button">0</button>
+      </p>
+      <p>
+        <button onclick="updateCalculation ('=')"class="nummber-button">=</button>
+        <button onclick="updateCalculation ('cleared')"class="nummber-button">clear</button>
+        <button onclick="updateCalculation ('.')"class="nummber-button">.</button>
+        <button onclick="updateCalculation ('/')"class="arithmetic-button">/</button>
+      </p>
+  </div>
+<script>
+  let calculation = localStorage.getItem('memory')|| '';
+  document.querySelector('.js-cal-values').innerHTML = calculation ;
+/*  if (calculation === null) {
+    calculation = '';
+  } else {
+    calculation ;
+  }
+  let calculation = '';*/
+  
+  function updateCalculation (value) {
+    if (value !== '=') {
+      if (value === 'cleared') {
+        localStorage.clear('memory');
+        calculation = '';
+        document.querySelector('.js-cal-values').innerHTML = 'cleared' ;
+      } else {
+        calculation += value ;
+        document.querySelector('.js-cal-values').innerHTML = calculation ;
+      }
+    } else {
+      calculation = eval(calculation);
+      document.querySelector('.js-cal-values').innerHTML = calculation ;
+      localStorage.setItem('memory',calculation);
+    }
+
+  };
+  
+  
+</script>
+    
+
+  </body>
+</html>
